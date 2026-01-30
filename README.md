@@ -19,7 +19,59 @@ STEP-4: Arrange the characters of the keyword in sorted order and the correspond
 STEP-5: Read the characters row wise or column wise in the former order to get the cipher text.
 
 # PROGRAM
+```
+#include <stdio.h>
+#include <string.h>
+
+void encryptRailFence(char message[], int rails) {
+    int len = strlen(message);
+    char rail[50][100];   // fixed size for safety
+
+    // Initialize rail matrix with '\n'
+    for (int i = 0; i < rails; i++)
+        for (int j = 0; j < len; j++)
+            rail[i][j] = '\n';
+
+    int row = 0, direction = 1;
+
+    // Place characters in zig-zag form
+    for (int i = 0; i < len; i++) {
+        rail[row][i] = message[i];
+        row += direction;
+
+        if (row == rails - 1 || row == 0)
+            direction = -direction;
+    }
+
+    // Read row-wise to get cipher text
+    printf("Encrypted text: ");
+    for (int i = 0; i < rails; i++)
+        for (int j = 0; j < len; j++)
+            if (rail[i][j] != '\n')
+                printf("%c", rail[i][j]);
+
+    printf("\n");
+}
+
+int main() {
+    char message[100];
+    int rails;
+
+    printf("Enter a Secret Message: ");
+    scanf("%s", message);
+
+    printf("Enter number of rails: ");
+    scanf("%d", &rails);
+
+    encryptRailFence(message, rails);
+
+    return 0;
+}
+```
 
 # OUTPUT
+<img width="558" height="352" alt="Screenshot 2026-01-30 210853" src="https://github.com/user-attachments/assets/f1d48464-1ea9-4646-8af8-b56c13b08938" />
+
 
 # RESULT
+The Rail Fence Transposition Cipher was successfully implemented in C and the plaintext was correctly encrypted using the given number of rails.
