@@ -25,7 +25,7 @@ STEP-5: Read the characters row wise or column wise in the former order to get t
 
 void encryptRailFence(char message[], int rails) {
     int len = strlen(message);
-    char rail[50][100];   // fixed size for safety
+    char rail[50][100];   
 
     // Initialize rail matrix with '\n'
     for (int i = 0; i < rails; i++)
@@ -34,7 +34,6 @@ void encryptRailFence(char message[], int rails) {
 
     int row = 0, direction = 1;
 
-    // Place characters in zig-zag form
     for (int i = 0; i < len; i++) {
         rail[row][i] = message[i];
         row += direction;
@@ -43,7 +42,6 @@ void encryptRailFence(char message[], int rails) {
             direction = -direction;
     }
 
-    // Read row-wise to get cipher text
     printf("Encrypted text: ");
     for (int i = 0; i < rails; i++)
         for (int j = 0; j < len; j++)
