@@ -27,7 +27,6 @@ void encryptRailFence(char message[], int rails) {
     int len = strlen(message);
     char rail[50][100];   
 
-    // Initialize rail matrix with '\n'
     for (int i = 0; i < rails; i++)
         for (int j = 0; j < len; j++)
             rail[i][j] = '\n';
